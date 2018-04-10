@@ -1,9 +1,9 @@
 package club.longyi.asf_helper.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user_tab")
@@ -15,9 +15,12 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-
-    @Column(name = "validFlag")
+    @Column(name = "valid_flag")
     private Integer validFlag;
+
+    @OneToMany(mappedBy = "bot_entity_id")
+//    @JoinColumn(name = "user_tab_id" )
+    private List<BotEntity> botEntities = new ArrayList<>();
 
 
 }
