@@ -1,3 +1,7 @@
+create database asf_helper;
+
+use asf_helper;
+
 CREATE TABLE `user_tab` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `create_ip` varchar(255) DEFAULT NULL,
