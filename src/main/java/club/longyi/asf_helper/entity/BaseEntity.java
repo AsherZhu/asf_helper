@@ -1,20 +1,14 @@
 package club.longyi.asf_helper.entity;
 
 
+import com.sun.javafx.geom.transform.Identity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public class BaseEntity implements Serializable, Cloneable {
-
-    /**
-     * 主键
-     */
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class BaseEntity extends IdEntity implements Serializable, Cloneable {
 
     /**
      * 创建时间
