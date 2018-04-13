@@ -34,11 +34,14 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
 
-    /*数据库*/
-//    runtime('mysql:mysql-connector-java')
-    compile 'org.mariadb.jdbc:mariadb-java-client'
-    compile 'com.alibaba:druid-spring-boot-starter'
-    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
+    //DateBase
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+    compile('com.alibaba:druid:1.1.8')
+    compile('com.alibaba:druid-spring-boot-starter:1.1.9')
+    runtime('org.mariadb.jdbc:mariadb-java-client')
+
+    //shiro
+//    compile 'org.apache.shiro:shiro-spring-boot-starter:1.4.0'
 
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
