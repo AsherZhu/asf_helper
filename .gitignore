@@ -29,7 +29,4 @@ hs_err_pid*
 .gradle/
 build/
 out/production/resources/
-src/main/resources/META-INF/
-src/main/resources/static/
-src/main/resources/templates/
-src/main/webapp/
+
