@@ -1,4 +1,4 @@
-package club.longyi.asf_helper.servlet;
+package club.longyi.asf_helper.config;
 
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

@@ -43,7 +43,7 @@ dependencies {
     runtime('org.mariadb.jdbc:mariadb-java-client')
 
     //shiro
-//    compile 'org.apache.shiro:shiro-spring-boot-starter:1.4.0'
+    compile 'org.apache.shiro:shiro-spring-boot-starter:1.4.0'
 
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
