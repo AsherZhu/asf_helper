@@ -1,8 +1,5 @@
 package club.longyi.asf_helper.config;
 
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by:

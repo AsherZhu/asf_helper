@@ -1,7 +1,8 @@
 package club.longyi.asf_helper.entity;
 
+import club.longyi.asf_helper.module.base.entity.BaseEntity;
+
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,59 @@ public class BotEntity extends BaseEntity {
     @OneToMany(mappedBy = "botEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CDKeyUsedEntity> cdKeyUsedEntities;
 
+    public String getSteamLogin() {
+        return SteamLogin;
+    }
 
+    public void setSteamLogin(String steamLogin) {
+        SteamLogin = steamLogin;
+    }
 
+    public String getSteamPassword() {
+        return SteamPassword;
+    }
+
+    public void setSteamPassword(String steamPassword) {
+        SteamPassword = steamPassword;
+    }
+
+    public boolean isEnabled() {
+        return Enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        Enabled = enabled;
+    }
+
+    public boolean isFarmOffline() {
+        return FarmOffline;
+    }
+
+    public void setFarmOffline(boolean farmOffline) {
+        FarmOffline = farmOffline;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public List<LogEntity> getLogEntities() {
+        return logEntities;
+    }
+
+    public void setLogEntities(List<LogEntity> logEntities) {
+        this.logEntities = logEntities;
+    }
+
+    public List<CDKeyUsedEntity> getCdKeyUsedEntities() {
+        return cdKeyUsedEntities;
+    }
+
+    public void setCdKeyUsedEntities(List<CDKeyUsedEntity> cdKeyUsedEntities) {
+        this.cdKeyUsedEntities = cdKeyUsedEntities;
+    }
 }

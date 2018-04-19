@@ -1,5 +1,7 @@
 package club.longyi.asf_helper.entity;
 
+import club.longyi.asf_helper.module.base.entity.IdEntity;
+
 import javax.persistence.*;
 import java.util.Date;
 

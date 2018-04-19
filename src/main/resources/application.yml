@@ -44,4 +44,4 @@ spring:
 
   #页面热加载
   thymeleaf:
-    cache: true
+    cache: false
