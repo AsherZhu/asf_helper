@@ -30,7 +30,5 @@ public interface UserDao extends CommonDao<UserEntity, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByUserName(String name);
-
-
-
+    
 }

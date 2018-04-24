@@ -42,6 +42,7 @@ public class UserService extends CommonService<UserEntity, Long> {
     }
 
     public boolean existsByEmail(String email) {
+        System.out.println(email);
         return userDao.existsByEmail(email);
     }
 

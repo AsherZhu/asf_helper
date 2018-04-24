@@ -24,7 +24,7 @@ public class DruidConfiguration {
      * @return
      */
     @Bean
-    public ServletRegistrationBean<StatViewServlet> DruidStatViewServle2(){
+    public ServletRegistrationBean<StatViewServlet> DruidStatViewServle(){
         //org.springframework.boot.context.embedded.ServletRegistrationBean提供类的进行注册.
         ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(new StatViewServlet(),"/druid/*");
 
@@ -47,7 +47,7 @@ public class DruidConfiguration {
      * @return
      */
     @Bean
-    public FilterRegistrationBean<WebStatFilter> druidStatFilter2(){
+    public FilterRegistrationBean<WebStatFilter> druidStatFilter(){
 
         FilterRegistrationBean<WebStatFilter> filterRegistrationBean = new FilterRegistrationBean<>(new WebStatFilter());
 

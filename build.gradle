@@ -46,6 +46,10 @@ dependencies {
     //shiro
 //    compile 'org.apache.shiro:shiro-spring-boot-starter:1.4.0'
 
+
+    //other
+    compile 'org.eclipse.ecf:org.apache.commons.codec:1.9.0.v20170208-1614'
+
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

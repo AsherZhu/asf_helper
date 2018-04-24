@@ -6,13 +6,11 @@ import club.longyi.asf_helper.type.ReturnType;
 import club.longyi.asf_helper.utils.RealIpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 /**
  * Created by:
@@ -21,23 +19,47 @@ import java.util.Date;
  * https://github.com/ZhuShuai1992
  */
 @Controller
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/sign-up")
+    @RequestMapping(value = "")
     public String registUser() {
-        return "sign-up";
+        return "register";
     }
 
-    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-    public String saveUser(UserEntity userEntity , HttpServletRequest request) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String saveUser(UserEntity userEntity, HttpServletRequest request) {
         String message = ReturnType.UNKNOW_ERROR.name();
-        userEntity.setCreateIP(RealIpUtils.getIpAddress(request));
-        userService.save(userEntity);
+        if (!userService.existsByUserName(userEntity.getUserName()) && !userService.existsByEmail(userEntity.getEmail())) {
+            userEntity.setCreateIP(RealIpUtils.getIpAddress(request));
+            userService.save(userEntity);
+            message = ReturnType.SUCCESS.name();
+        }
         return message;
+    }
+
+    /**
+     * 检查用户名或邮箱是否存在
+     *
+     * @param type    类型
+     * @param content 内容
+     * @return 是否存在
+     */
+    @RequestMapping(value = "/test")
+    @ResponseBody
+    public boolean testExist(String type, String content) {
+        switch (type) {
+            case "userName":
+                System.out.println("userName:" + userService.existsByUserName(content));
+                return userService.existsByUserName(content);
+            case "email":
+                System.out.println("email:" + userService.existsByEmail(content));
+                return userService.existsByEmail(content);
+        }
+        return false;
     }
 
 }

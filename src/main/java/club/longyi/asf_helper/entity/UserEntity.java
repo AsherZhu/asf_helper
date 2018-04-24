@@ -1,6 +1,7 @@
 package club.longyi.asf_helper.entity;
 
 import club.longyi.asf_helper.module.base.entity.BaseEntity;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -12,9 +13,10 @@ import java.util.List;
 @Table(name = "user_tab")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "user_name")
+    @Column(name = "user_name", unique = true)
     @NotEmpty(message = "用户名不能为空")
     @Size(min = 2,max = 20,message = "用户名长度必须大于 2 且小于 20 字")
+    @UniqueElements
     private String userName;
 
     @NotNull(message = "密码不能为空")
@@ -22,8 +24,11 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password")
     private String password;
 
+
+
     @NotEmpty(message = "邮箱不能为空")
-    @Column(name = "email")
+    @Column(name = "email" ,unique = true)
+    @UniqueElements
     private String email;
 
     @Column(name = "valid_flag")
