@@ -13,10 +13,9 @@ import java.util.List;
 @Table(name = "user_tab")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "user_name", unique = true)
+    @Column(name = "user_name")
     @NotEmpty(message = "用户名不能为空")
     @Size(min = 2,max = 20,message = "用户名长度必须大于 2 且小于 20 字")
-    @UniqueElements
     private String userName;
 
     @NotNull(message = "密码不能为空")
@@ -27,8 +26,7 @@ public class UserEntity extends BaseEntity {
 
 
     @NotEmpty(message = "邮箱不能为空")
-    @Column(name = "email" ,unique = true)
-    @UniqueElements
+    @Column(name = "email")
     private String email;
 
     @Column(name = "valid_flag")

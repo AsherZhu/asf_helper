@@ -95,7 +95,6 @@
                 content:elem.value
             },
             function (boolean) {
-                console.log(boolean);
                 if (boolean) {
                     $(elem).parent().removeClass("am-form-success am-form-icon am-form-feedback").find("span").remove();
                     $(elem).parent().addClass("am-form-error am-form-icon am-form-feedback").append("<span class='am-icon-times'></span>");
@@ -110,13 +109,19 @@
         //检查用户是否存在
         $('#user-name').keyup(function () {
             var elem = this;
-            if (elem.value.length===0) return;
-                console.log(elem.value);
+            if (elem.value.length===0) {
+                $(elem).parent().removeClass("am-form-success am-form-icon am-form-feedback").find("span").remove();
+                return;
+            }
+
             post(this.name, elem)
         });
         $('#email').keyup(function () {
             var elem = this;
-            if (elem.value.length===0) return;
+            if (elem.value.length===0) {
+                $(elem).parent().removeClass("am-form-success am-form-icon am-form-feedback").find("span").remove();
+                return;
+            }
                 console.log(elem.value);
             post(this.name, elem)
         });
