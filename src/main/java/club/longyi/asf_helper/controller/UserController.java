@@ -53,10 +53,8 @@ public class UserController {
     public boolean testExist(String type, String content) {
         switch (type) {
             case "userName":
-                System.out.println("userName:" + userService.existsByUserName(content));
                 return userService.existsByUserName(content);
             case "email":
-                System.out.println("email:" + userService.existsByEmail(content));
                 return userService.existsByEmail(content);
         }
         return false;
