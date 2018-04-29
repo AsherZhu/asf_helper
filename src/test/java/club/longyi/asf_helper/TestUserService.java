@@ -10,14 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * https://github.com/ZhuShuai1992
  */
 
-public class TestUserService{
+public class TestUserService {
 
-//    @Autowired
-//    private UserService userService;
-
+    String s1 = "string01";
     public static void main(String[] args) {
-        UserService userService = new UserService();
-        System.out.println(userService.existsByEmail("123456789"));
+        String s1 = "string02";
+        System.out.println(s1+"~~这是局部变量");
+        TestUserService testUserService = new TestUserService();
+        System.out.println(testUserService.s1+"~~这是全局变量");
     }
 
 }

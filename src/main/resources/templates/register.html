@@ -36,17 +36,13 @@
                   创建一个新的用户
               </span>
 
-
             <form class="am-form tpl-form-line-form" action="#" th:action="@{/user/register}" method="post">
                 <div class="am-form-group am-form-icon am-form-feedback">
-                    <input type="text" class="am-form-field" id="user-name" name="userName" minlength="2" maxlength="20"
-                           placeholder="请输入用户名 2~20个字符" required>
+                    <input type="text" class="am-form-field" id="user-name" name="userName" placeholder="请输入用户名 2~20个字符">
                 </div>
 
                 <div class="am-form-group am-form-icon am-form-feedback">
-                    <input type="password" class="am-form-field" id="password" name="password" minlength="6"
-                           maxlength="20" pattern="/^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{6,20}$/"
-                           placeholder="请输入密码 6~20数字加字母组合" required>
+                    <input type="password" class="am-form-field" id="password" name="password" placeholder="请输入密码 6~20数字加字母组合">
                 </div>
 
                 <div class="am-form-group am-form-icon am-form-feedback">
@@ -54,10 +50,8 @@
                 </div>
 
                 <div class="am-form-group am-form-icon am-form-feedback">
-                    <input type="email" class="am-form-field" id="email" name="email"
-                           data-validation-message="自定义提示信息：输入地球上的电子邮箱撒" placeholder="请输入电子邮箱" required>
+                    <input type="email" class="am-form-field" id="email" name="email" placeholder="请输入电子邮箱">
                 </div>
-
 
                 <div class="am-form-group tpl-login-remember-me">
                     <input id="remember-me" type="checkbox">
@@ -69,8 +63,8 @@
 
 
                 <div class="am-form-group">
-                    <input type="submit"
-                           class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交
+                    <input type="button"
+                           class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn" id="submit" value="表单不完整">
                 </div>
             </form>
         </div>
@@ -89,28 +83,10 @@
 <script th:src="@{http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js}"></script>
 <script th:src="@{/assets/js/app.js}"></script>
 <script th:inline="javascript">
-    function post(type, elem) {
-        if (elem.value.length === 0) {
-            $(elem).parent().removeClass("am-form-success am-form-error").find("span").remove();
-            return;
-        }
-        $.post("/user/test",
-            {
-                type: type,
-                content: elem.value
-            },
-            function (boolean) {
-                if (boolean) {
-                    $(elem).parent().removeClass("am-form-success").find("span").remove();
-                    $(elem).parent().addClass("am-form-error").append("<span class='am-icon-times'></span>");
-                } else {
-                    $(elem).parent().removeClass("am-form-error").find("span").remove();
-                    $(elem).parent().addClass("am-form-success").append("<span class='am-icon-check'></span>");
-                }
-            }
-        )
-    }
+
     $(function () {
+        // 
+        var validation = ['1','1','1','1','1'];
         //检查用户是否存在
         $('#user-name').keyup(function () {
             var elem = this;
@@ -118,7 +94,15 @@
         });
         $('#email').keyup(function () {
             var elem = this;
-            post(this.name, elem)
+            var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (elem.value.length === 0) {
+                $(elem).parent().removeClass("am-form-success am-form-error").find("span").remove();
+            } else if (regex.test(elem.value)) {
+                post(this.name, elem);
+            } else {
+                $(elem).parent().removeClass("am-form-success").find("span").remove();
+                $(elem).parent().addClass("am-form-error").append("<span class='am-icon-times'></span>");
+            }
         });
 
         //验证密码是否符合标准
@@ -127,14 +111,13 @@
             var reg = /^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{8,20}$/;
             if (elem.value.length === 0) {
                 $(elem).parent().removeClass("am-form-success am-form-error").find("span").remove();
-                return;
-            }
-            if (reg.test(elem.value)) {
+            } else if (reg.test(elem.value)) {
                 $(elem).parent().removeClass("am-form-error").find("span").remove();
                 $(elem).parent().addClass("am-form-success").append("<span class='am-icon-check'></span>");
             } else {
                 $(elem).parent().removeClass("am-form-success").find("span").remove();
                 $(elem).parent().addClass("am-form-error").append("<span class='am-icon-times'></span>");
+                // document.getElementById('submit-button').removeC
             }
         });
 
@@ -144,21 +127,37 @@
             var password2 = elem.value;
             if (elem.value.length === 0) {
                 $(elem).parent().removeClass("am-form-success am-form-error").find("span").remove();
-                return;
-            }
-            if (password1 === password2) {
+            }else if (password1 === password2) {
                 $(elem).parent().removeClass("am-form-error").find("span").remove();
                 $(elem).parent().addClass("am-form-success").append("<span class='am-icon-check'></span>");
             } else {
                 $(elem).parent().removeClass("am-form-success").find("span").remove();
                 $(elem).parent().addClass("am-form-error").append("<span class='am-icon-times'></span>");
-
-
             }
         });
 
         //异步请求验证是否存在
-
+        function post(type, elem) {
+            if (elem.value.length === 0) {
+                $(elem).parent().removeClass("am-form-success am-form-error").find("span").remove();
+                return;
+            }
+            $.post("/user/test",
+                {
+                    type: type,
+                    content: elem.value
+                },
+                function (boolean) {
+                    if (boolean) {
+                        $(elem).parent().removeClass("am-form-success").find("span").remove();
+                        $(elem).parent().addClass("am-form-error").append("<span class='am-icon-times'></span>");
+                    } else {
+                        $(elem).parent().removeClass("am-form-error").find("span").remove();
+                        $(elem).parent().addClass("am-form-success").append("<span class='am-icon-check'></span>");
+                    }
+                }
+            )
+        }
 
     });
 
