@@ -30,7 +30,8 @@ public class UserController {
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register.action", method = RequestMethod.POST)
+    @ResponseBody
     public String saveUser(UserEntity userEntity, HttpServletRequest request) {
         String message = ReturnType.UNKNOW_ERROR.name();
         if (!userService.existsByUserName(userEntity.getUserName()) && !userService.existsByEmail(userEntity.getEmail())) {
