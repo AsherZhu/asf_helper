@@ -25,8 +25,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "")
-    public String registUser() {
+    @RequestMapping(value = "register")
+    public String register() {
         return "register";
     }
 
@@ -40,6 +40,11 @@ public class UserController {
             message = ReturnType.SUCCESS.name();
         }
         return message;
+    }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
     }
 
     /**
